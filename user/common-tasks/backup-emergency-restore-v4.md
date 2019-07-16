@@ -168,6 +168,14 @@ Emergency Recovery Instructions
 
         [user@restore vm1]$ mv private.img.dec private.img.dec.bz2
         [user@restore vm1]$ bunzip2 private.img.dec.bz2
+        
+    **Note:** If your backup wasn't compressed you can just concatenate the
+    files. Also, if you have more than 999 files, you'll get a numbering
+    scheme more difficult to match. You could try something like this:
+    
+        [user@restore vm1]$ for f in `ls -ru private.img.* | grep -v enc`; do \
+            cat $f >> private.img; done
+    
 
  8. Mount `private.img` and access your data.
 
